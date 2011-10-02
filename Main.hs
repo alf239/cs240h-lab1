@@ -6,7 +6,7 @@ main = do
         s   <- getArgs
         g   <- mapM readFile s
         let dict = Map.unionsWith (+) (map (wordFreq . words) g)
-        putStrL $ (histogram . Map.toList) dict
+        putStrLn $ (histogram . Map.toList) dict
 
 histogram :: (Show w, Num n) => [(w, n)] -> String
 histogram []    = ""
