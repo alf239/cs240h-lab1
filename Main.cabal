@@ -6,7 +6,7 @@ Author:         Alexey Filippov
 Synopsis:       Submission for CS240h, Lab1
 Build-Type:     Simple
 
-Executable program1
-  Build-Depends:  HUnit
+Executable hist
   Main-Is:        Main.hs
+  Build-Depends:  base >= 3, containers >= 0.4
 
