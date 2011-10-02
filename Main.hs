@@ -7,8 +7,8 @@ main = do
         g     <- if files == [] 
                            then (fmap (\a->[a]) getContents)
                            else mapM readFile files
-        let dict = Map.unionsWith (+) (map (wordFreq . words) g)
-        putStrLn $ (histogram . Map.toList) dict
+        let dict = Map.toList (Map.unionsWith (+) (map (wordFreq . words) g))
+        putStrLn $ histogram dict
 
 
 histogram :: (Show w, Num n) => [(w, n)] -> String
