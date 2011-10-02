@@ -10,10 +10,15 @@ main = do
                     then fmap (: []) getContents
                     else mapM readFile files
         let dict = Map.toList (Map.unionsWith (+) (map (wordFreq . words) g))
-        putStrLn $ histogram dict
+        putStrLn $ histogram (sortBy bySecond dict)
 
-bySecond :: Ord a => (a, a) -> (a, a) -> Ordering
-bySecond (a1, b1) (a2, b2) = compare b1 b2 `mappend` compare a1 a2
+invert :: Ordering -> Ordering
+invert GT = LT
+invert LT = GT
+invert EQ = EQ
+
+bySecond :: (Ord a, Ord b) => (a, b) -> (a, b) -> Ordering
+bySecond (a1, b1) (a2, b2) = invert (compare b1 b2 `mappend` compare a1 a2)
 
 histogram :: (Show w, Num n) => [(w, n)] -> String
 histogram = concatMap (\(a, b) -> show a ++ "\t" ++ show b ++ "\n")
