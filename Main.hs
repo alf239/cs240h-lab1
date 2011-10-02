@@ -13,9 +13,7 @@ main = do
 
 histogram :: (Show w, Num n) => [(w, n)] -> String
 histogram a0 = concat $ map lineTemplate a0
-
-lineTemplate :: (Show a, Show b) => (a, b) -> String
-lineTemplate (a, b) = (show a) ++ "\t" ++ (show b) ++ "\n"
+               where lineTemplate (a, b) = (show a) ++ "\t" ++ (show b) ++ "\n"
 
 wordFreq :: (Ord k, Num n) => [k] -> Map.Map k n
 wordFreq list0 = foldl (\m a -> Map.insertWith' (+) a 1 m) Map.empty list0
