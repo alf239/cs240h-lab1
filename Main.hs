@@ -1,13 +1,13 @@
 import System.Environment
 import Control.Monad
-import Data.Map
+import qualified Data.Map as Map
 
 main = do
         s   <- getArgs
         g   <- mapM readFile s
-        let dict = unionsWith (+) (Prelude.map wordFreq (Prelude.map words g))
+        let dict = Map.unionsWith (+) (map (wordFreq . words) g)
         print dict
 
-wordFreq list0 = wordCount empty list0
+wordFreq list0 = wordCount Map.empty list0
                  where wordCount acc []    = acc
-                       wordCount acc (h:t) = wordCount (insertWith' (+) h 1 acc) t
+                       wordCount acc (h:t) = wordCount (Map.insertWith' (+) h 1 acc) t
