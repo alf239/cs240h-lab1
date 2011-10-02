@@ -5,8 +5,8 @@ import Data.Map
 main = do
         s   <- getArgs
         g   <- mapM readFile s
-        let dict = Prelude.map words g
-        print $ show dict
+        let dict = unionsWith (+) (Prelude.map wordFreq (Prelude.map words g))
+        print dict
 
 wordFreq list0 = wordCount empty list0
                  where wordCount acc []    = acc
