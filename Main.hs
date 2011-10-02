@@ -1,13 +1,13 @@
 import System.Environment
 import Control.Monad
-import Data.Set
+import Data.Map
 
 main = do
-        [s] <- getArgs
-        f   <- readFile "/usr/share/dict/words"
-        g   <- readFile s
-        let dict = fromList (lines f)
-        mapM_ (spell dict) (words g)
+        s   <- getArgs
+        g   <- mapM readFile s
+        let dict = Prelude.map words g
+        print $ show dict
 
-spell d w = when (w `notMember` d) (putStrLn w)
-    
+wordFreq list0 = wordCount empty list0
+                 where wordCount acc []    = acc
+                       wordCount acc (h:t) = wordCount (insertWith' (+) h 1 acc) t
