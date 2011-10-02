@@ -3,8 +3,8 @@ import Control.Monad
 import qualified Data.Map as Map
 
 main = do
-        s   <- getArgs
-        g   <- mapM readFile s
+        files <- getArgs
+        g   <- if files == [] then (fmap (\a->[a]) getContents) else mapM readFile files
         let dict = Map.unionsWith (+) (map (wordFreq . words) g)
         putStrLn $ (histogram . Map.toList) dict
 
