@@ -1,0 +1,12 @@
+Name:           Cs240hLab1Submission
+Version:        0.1
+Cabal-Version:  >= 1.2
+License:        BSD3
+Author:         Alexey Filippov
+Synopsis:       Submission for CS240h, Lab1
+Build-Type:     Simple
+
+Executable program1
+  Build-Depends:  HUnit
+  Main-Is:        Main.hs
+
