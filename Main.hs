@@ -32,7 +32,6 @@ histogram k m = concatMap (\(a, b) -> histogramLine a wl (scale b hl hm)) k
                   hm = maximum (map snd k)
                   hl = m - wl
                   
-
 wordFreq :: Ord k => [k] -> Map.Map k Int
 wordFreq = foldl' (\m a -> Map.insertWith' (+) a 1 m) Map.empty
 
