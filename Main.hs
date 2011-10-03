@@ -11,8 +11,11 @@ main = do
         g     <- if null files
                     then fmap (: []) getContents
                     else mapM readFile files
-        let dict = Map.toList (wordFreq (map sToLowerCase (concatMap cleanWords g)))
+        let dict = buildFreqDictionary g
         putStrLn $ histogram (sortBy bySecond dict) 80
+
+buildFreqDictionary :: [String] -> [(String, Int)]
+buildFreqDictionary g = Map.toList (wordFreq (map sToLowerCase (concatMap cleanWords g)))
 
 sToLowerCase = map toLower
 
