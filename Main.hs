@@ -24,7 +24,7 @@ scale a l m = floor (a * l % m)
 
 histogramLine :: String -> Int -> Int -> String
 histogramLine _ _  0   = ""
-histogramLine w wl val = w ++ replicate (wl - (length w)) ' ' ++ replicate val '#' ++ "\n"
+histogramLine w wl val = w ++ replicate (wl - length w) ' ' ++ replicate val '#' ++ "\n"
 
 histogram :: [(String, Int)] -> Int -> String
 histogram k m = concatMap (\(a, b) -> histogramLine a wl (scale b hl hm)) k
