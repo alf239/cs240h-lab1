@@ -22,10 +22,14 @@ bySecond (a1, b1) (a2, b2) = compare b2 b1 `mappend` compare a2 a1
 scale :: Int -> Int -> Int -> Int
 scale a l m = floor (a * l % m)
 
+histogramLine :: String -> Int -> Int -> String
+histogramLine _ _  0   = ""
+histogramLine w wl val = w ++ replicate (wl - (length w)) ' ' ++ replicate val '#' ++ "\n"
+
 histogram :: [(String, Int)] -> Int -> String
-histogram k m = concatMap (\(a, b) -> show a ++ "\t" ++ (replicate (scale b hl hm) '#') ++ "\n") k
-            where wl = maximum (map (\(a, b) -> length a) k)
-                  hm = maximum (map (\(a, b) -> b) k)
+histogram k m = concatMap (\(a, b) -> histogramLine a wl (scale b hl hm)) k
+            where wl = maximum (map (length . fst) k)
+                  hm = maximum (map snd k)
                   hl = m - wl
                   
 
