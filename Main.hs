@@ -17,11 +17,12 @@ main = do
 -- | Builds a frequency dictionary given a list of input Strings ("texts")
 -- We take a list of strings in order to avoid merging frequence dictionaries later on
 buildFreqDictionary :: [String] -> [(String, Int)]
-buildFreqDictionary g = Map.toList (wordFreq (map sToLowerCase (concatMap cleanWords g)))
+buildFreqDictionary g = Map.toList (wordFreq (map canonical (concatMap cleanWords g)))
 
--- | Canonic representation of the word
+-- | Canonical representation of the word
 -- Can be extended later on if we decide, e.g., merge together "tomorrow" and "to-morrow"
-sToLowerCase = map toLower
+canonical :: String -> String
+canonical = map toLower
 
 -- | Ordering for our histogram
 -- Currently, inverted ordering by frequency, then by word
