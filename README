@@ -4,4 +4,21 @@ Alexey Filippov, currently a Software Engineer at EMBL-EBI, UK
 
 2. How to build and run your program.
 
-TBD
+you can simply 
+
+ ghc --make Main.hs
+ ./Main <filename>
+
+or if you prefer cabal,
+
+ cabal configure
+ cabal build
+ dist/build/hist/hist <filename>
+
+There are some sample files provided, try
+
+ ./Main lipsum.txt
+ ./Main ecclesiastes.txt
+ ./Main KJV_Bible.txt
+
+Known issues are tracked at https://github.com/alf239/cs240h-lab1/issues - feel free to submit new ones.
