@@ -9,7 +9,7 @@ you can simply
  ghc --make Main.hs
  ./Main <filename>
 
-or if you prefer cabal,
+or, if you prefer cabal,
 
  cabal configure
  cabal build
